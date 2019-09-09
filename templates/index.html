@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+      <div class="title">
+         Очистка водоемов, лесов организация субботников
+      </div>
+         <div class="menu">
+            <a href="#">Грядущие события</a>
+            <a href="#">Прошедшие события</a>
+            <a href="#">События на сегодня</a>
+         </div>
+      </div>
+      <div class="main">
+      {% for event in events %}
+        <div class="card">
+                <div class="card_img"></div>
+                <div class="card_title">{{event.name}}</div>
+                <div class="card_date">
+                Дата проведения: {{event.date_start}}
+                </div>
+                <a href="#">
+                <div class="card_button">
+                    Записаться
+                </div>
+                </a>
+            </div>
+      {% endfor %}
+
+      </div>
+{% endblock content %}

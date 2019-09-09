@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>eco</title>
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+   <div class="wrapper">
+      <div class="header">
+         <div class="nav">
+            <div class="logo">Eco</div>
+            <div class="nav-links">
+               <a href="#">Новости</a>
+               <a href="#">О нас</a>
+               {% if user.is_authenticated %}<a href="#">{{user.email}}</a>{% else %}<a href="/login">Войти</a>{% endif %}
+            </div>
+
+         </div>
+      {% block content %}
+
+      {% endblock content %}
+      <div class="footer">
+         <a href="" class="vk"></a>
+         <a href="" class="inst"></a>
+      </div>
+   </div>
+</body>
+</html>

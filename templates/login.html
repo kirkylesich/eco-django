@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+   
+      <div class="login-place">
+         <center><h1 class="h1">Вход</h1></center>
+         <form method='post' action="">
+         {% csrf_token %}
+            <div class="inp1">
+               <input type="text" placeholder="Введите адрес электронной почты" name="login" width="481px;" height="64px;" class="inp-border" required>
+            </div>   
+            <div  class="inp2">
+               <input type="password" placeholder="Введите пароль" width="481px;" name='password' height="64px;" class="inp-border" required>
+            </div>
+               {% if error %}<p>{{error}}</p>{% endif %}
+               <div style="margin-top: 23px; display: inline-block;"><a href="#" class="unknow-password">Забыли пароль?</a></div>
+               <div style="margin-top: 23px; display: inline-block;"><a href="#" class="registration">Регистрация</a></div>  
+                  <div>
+                     <button class="enter">Вход</button>
+                  </div>
+            </div>
+         </form>
+   </div>
+{% endblock content %}
