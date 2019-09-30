@@ -11,20 +11,57 @@
          </div>
       </div>
       <div class="main">
-      {% for event in events %}
-        <div class="card">
-                <div class="card_img"></div>
-                <div class="card_title">{{event.name}}</div>
-                <div class="card_date">
-                Дата проведения: {{event.date_start}}
-                </div>
-                <a href="#">
-                <div class="card_button">
-                    Записаться
-                </div>
-                </a>
+      {% csrf_token %}
+         {% for event in events %}
+         <div class="card">
+         <div class="card__info">
+            <div class="card__date">
+                  <div class="time">
+                     19:00
+                  </div>
+                  <div class="day">
+                     20.09.2019
+                  </div>
+               </div>
+               <div class="card__text">
+                  <h3>
+                     {{event.name}}
+                  </h3>
+                  <p id = 'count_members{{ event.id }}'>
+                     {{event.get_count_members}} участника
+                  </p>
+               </div>
             </div>
-      {% endfor %}
-
+            <div class="card__buttons">
+               <a href="#" id = "{{event.id}}" data-id = "{{event.id}}" class='btn'>{% if request.user in event.members.all %}Вы записаны{% else %}Записаться{% endif %}</a>
+               <a href="#">
+                  Подробнее
+               </a>
+            </div>
+         </div>
+         {% endfor %}
       </div>
+
+      <script>
+      $( document ).ready(function() {
+         var token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+         $('.btn').click(function(){
+            $.post(
+               "{% url 'maineco:join_event' %}",
+               {
+                  "id_event": $(this).data('id'),
+                  "csrfmiddlewaretoken": token
+               },
+                 function (data) {
+                            var button = data.id_event
+                            $("#"+button).text("Вы записаны")
+                            $.notify(data.message,data.tag);
+                            $('#count_members'+button).text(data.member_count + " участника")
+
+                    }
+               );
+         })
+      });
+      
+      </script>
 {% endblock content %}

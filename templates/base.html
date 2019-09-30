@@ -12,21 +12,22 @@
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <script src="{% static 'js/notify.js' %}"></script>
 </head>
 
 <body>
    <div class="wrapper">
       <div class="header">
          <div class="nav">
-            <div class="logo">Eco</div>
+             <div class="logo">{% comment %}<img src='{% static "img/logo.png" %}' width='20' height='50'> {% endcomment %}Eco</div> 
             <div class="nav-links">
                <a href="#">Новости</a>
                <a href="#">О нас</a>
                {% if user.is_authenticated %}<div style="display: inline" class="activator">
                   <a href="#" class="knop">{{user.email}}</a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Личный кабинет</a></li>
-                    <li><a href="#">Выйти</a></li>
+                    <li><a href="personal-data">Личный кабинет</a></li>
+                    <li><a href="logout">Выйти</a></li>
                 </ul>
                </div>{% else %}<a href="/login">Войти</a>{% endif %}
                
@@ -45,4 +46,14 @@
    </div>
 </body>
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    $( document ).ready(function() {
+            {% if messages %}
+                {% for message in messages %}
+                    $.notify("{{message}}",'{{message.tags}}');
+                {% endfor %}
+            {% endif %}
+    });
+</script>
+
 </html>

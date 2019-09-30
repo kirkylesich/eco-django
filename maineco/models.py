@@ -16,5 +16,4 @@ class Event(models.Model):
         return count
 
 
-
-
+    

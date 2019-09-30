@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "/home/kirill/.virtualenvs/django/bin/python",
+    "python.linting.pylintArgs": ["--load-plugins", "pylint_django"]
+}
