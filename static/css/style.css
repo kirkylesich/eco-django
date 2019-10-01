@@ -211,7 +211,7 @@ border-radius: 5px;
 .card {
   width: 60.088vw;
   display: flex;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 134.09%; 
   align-items: center;
   padding: 15px 50px;
@@ -230,7 +230,7 @@ border-radius: 5px;
   font-weight: bold;
   color: #000;
   margin: 0 auto;
-  font-size: 24px;} 
+  font-size: inherit;} 
 
 .card__text p {
   margin: 0 auto;
