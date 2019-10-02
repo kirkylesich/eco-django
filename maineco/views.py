@@ -85,18 +85,21 @@ def logout(request):
 
 
 def join_event(request):
+    status = 202
+    user =request.user
     if request.is_ajax():
         event = Event.objects.get(id=request.POST['id_event'])
-        try:
-            if request.user.is_invited(event):
+        if user.is_authenticated:
+            if user.is_invited(event):
                 message = "Вы уже записаны!"
                 tag = 'error'
             else:
                 message = "Вы успешно записались!"
                 tag = 'success'
                 event = Event.objects.get(id=request.POST['id_event'])
-                event.members.add(request.user)
-        except:
-            message = "Что то пошло не так"
-            tag = "error"
-    return JsonResponse({'message': message, "tag": tag, "member_count": event.get_count_members(),"id_event":event.id}, safe=False)
+                event.members.add(user)
+        else:
+            message = 'Авторизуйтесь или зарегистрируйтесь для того чтобы учавстовать в мероприятиях!'
+            tag = 'error'
+            status = 401
+    return JsonResponse({'message': message, "tag": tag, "member_count": event.get_count_members(),"id_event":event.id}, safe=False,status=status)
