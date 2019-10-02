@@ -33,7 +33,7 @@
                </div>
             </div>
             <div class="card__buttons">
-               <a href="#" id = "{{event.id}}" data-id = "{{event.id}}" class='btn dontActive'>{% if request.user in event.members.all %}Вы записаны{% else %}Записаться{% endif %}</a>
+               <a id = "{{event.id}}" data-id = "{{event.id}}" class='btn {% if request.user in event.members.all %}dontActive{% endif %}'>{% if request.user in event.members.all %}Вы записаны{% else %}Записаться{% endif %}</a>
                <a href="#">
                   Подробнее
                </a>
@@ -51,15 +51,16 @@
                {
                   "id_event": $(this).data('id'),
                   "csrfmiddlewaretoken": token
-               },
-                 function (data) {
+               }
+               ).done(function (data) {
                             var button = data.id_event
-                            $("#"+button).text("Вы записаны")
+                            $("#"+button).text("Вы записаны").addClass("dontActive")
                             $.notify(data.message,data.tag);
                             $('#count_members'+button).text(data.member_count + " участника")
-
-                    }
-               );
+                    })
+                .fail(function (xhr) {
+                    (xhr.status === 401)?$.notify('Чтобы принять участие в данном мероприятии, необходимо авторизоваться'):$.notify('При попытке запроса на сервер , произошла ошибка')
+                });
          })
       });
       

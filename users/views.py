@@ -2,6 +2,12 @@ from django.shortcuts import render
 from users.forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import json
+
+
+def show_forms_errors(request,form):
+    for error in form.errors.as_data():
+        messages.add_message(request, messages.ERROR, json.loads(form.errors.as_json())[error][0]['message'])
 
 @login_required
 def personaldata(request):
@@ -13,12 +19,7 @@ def personaldata(request):
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Данные сохранены!')
         else:
-            for error in form.errors:
-                if error == "email":
-                    messages.add_message(request, messages.ERROR, 'Введите правильный адрес электронной почты!')
-                if error == "phone":
-                    messages.add_message(request, messages.ERROR, 'Пользователь с таким телефоном уже существует!')
-
+            show_forms_errors(request,form)
     return render(request,'personalData.html',{'form':form,'user':user})
 
 def change_password(request):
