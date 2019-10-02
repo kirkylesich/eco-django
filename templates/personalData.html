@@ -23,41 +23,48 @@
                       </ul>
                   </div>
               </div>
-              <div class="pData-block">
-                  <div class="pData-block__title">
-                      Персональные данные
+              <div class="pData">
+                  <div class="banner">
+                        Вам необходимо подтвердить свой аккаунт чтобы пользоватсья сервисом.Письмо с подтверждением на вашей почте.
                   </div>
-                  <form action="" method="post">
-                    {% csrf_token %}
-                      <label for="id_last_name">Фамилия</label>
-                      <input type="text" name="last_name" maxlength="200" id="id_last_name" value="{{user.last_name|default_if_none:""}}">
-                      <label for="id_first_name">Имя</label>
-                      <input type="text" name="first_name" maxlength="200" id="id_first_name" value="{{user.first_name|default_if_none:""}}">
-                      <label for="id_phone">Номер телефона</label>
-                      <input type="text" name="phone" maxlength="200" id="id_phone" value="{{user.phone|default_if_none:""}}">
-                      <label for="id_email">E-mail</label>
-                      <input type="email" name="email" maxlength="254" required="" id="id_email" value="{{user.email|default_if_none:""}}">
-                      <div class="buttons">
-                        <button type="submit" id = "save_pers">Сохранить</button>
-                      </div>
-                  </form>
-              </div>
-              <div class="pData-block">
-                    <div class="pData-block__title">
-                        Изменение пароля
-                    </div>
-                    <form action="#">
-                        <label for="password">Текущий пароль</label>
-                        <input type="password" id="password">
-                        <label for="nPassword">Новый пароль</label>
-                        <input type="password" id="nPassword">
-                        <label for="cPassword">Подтвердите новый пароль</label>
-                        <input type="password" id="cPassword">
-                        <div class="buttons">
-                            <button type="submit">Изменить пароль</button>
+                <div class="pData-blocks">
+                    <div class="pData-block">
+                        <div class="pData-block__title">
+                            Персональные данные
                         </div>
-                    </form>
-                </div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <label for="id_last_name">Фамилия</label>
+                            <input type="text" name="last_name" maxlength="200" id="id_last_name" value="{{user.last_name|default_if_none:""}}">
+                            <label for="id_first_name">Имя</label>
+                            <input type="text" name="first_name" maxlength="200" id="id_first_name" value="{{user.first_name|default_if_none:""}}">
+                            <label for="id_phone">Номер телефона</label>
+                            <input type="text" name="phone" maxlength="200" id="id_phone" value="{{user.phone|default_if_none:""}}">
+                            <label for="id_email">E-mail</label>
+                            <input type="email" name="email" maxlength="254" required="" id="id_email" value="{{user.email|default_if_none:""}}">
+                            <div class="buttons">
+                                <button type="submit" id = "save_pers">Сохранить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="pData-block">
+                            <div class="pData-block__title">
+                                Изменение пароля
+                            </div>
+                            <form action="#">
+                                <label for="password">Текущий пароль</label>
+                                <input type="password" id="password">
+                                <label for="nPassword">Новый пароль</label>
+                                <input type="password" id="nPassword">
+                                <label for="cPassword">Подтвердите новый пароль</label>
+                                <input type="password" id="cPassword">
+                                <div class="buttons">
+                                    <button type="submit">Изменить пароль</button>
+                                </div>
+                            </form>
+                        </div>
+                </div>  
+              </div>
           </div>
           {% comment %} {% for message in messages %}
           {{message}}
