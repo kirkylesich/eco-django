@@ -321,7 +321,7 @@ border-radius: 5px;
 .pData {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 60%;
 }
 
 .pData-list {
@@ -348,7 +348,7 @@ border-radius: 5px;
 
 .banner {
   color: #fff;
-  background: #2E7D32;
+  background: rgba(46, 125, 50, 0.7);
   padding: 23px 40px;
   text-align: center;
 }
@@ -360,7 +360,7 @@ border-radius: 5px;
 }
 
 .pData-block {
-  width: 40%;
+  width: 63%;
   padding: 47px 20px 20.91px 18px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-right: 0;
