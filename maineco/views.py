@@ -93,6 +93,10 @@ def join_event(request):
             if user.is_invited(event):
                 message = "Вы уже записаны!"
                 tag = 'error'
+            elif not user.is_confirmed:
+                message = "Вы должны подтвердить свой аккаунт для того чтобы учавстовать в мероприятии"
+                tag = 'error'
+                status = 424
             else:
                 message = "Вы успешно записались!"
                 tag = 'success'

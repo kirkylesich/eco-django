@@ -24,15 +24,17 @@
                   </div>
               </div>
               <div class="pData">
+                  {% if not user.is_confirmed %}
                   <div class="banner">
                         Вам необходимо подтвердить свой аккаунт чтобы пользоватсья сервисом.Письмо с подтверждением на вашей почте.
                   </div>
+                  {% endif %}
                 <div class="pData-blocks">
                     <div class="pData-block">
                         <div class="pData-block__title">
                             Персональные данные
                         </div>
-                        <form action="" method="post">
+                        <form action="{% url 'maineco:maineco:personal_update' %}" method="post">
                             {% csrf_token %}
                             <label for="id_last_name">Фамилия</label>
                             <input type="text" name="last_name" maxlength="200" id="id_last_name" value="{{user.last_name|default_if_none:""}}">
@@ -51,13 +53,14 @@
                             <div class="pData-block__title">
                                 Изменение пароля
                             </div>
-                            <form action="#">
+                            <form action="{% url "maineco:maineco:change_password" %}" method="post">
+                                {% csrf_token %}
                                 <label for="password">Текущий пароль</label>
-                                <input type="password" id="password">
+                                <input type="password" name="password" id="password">
                                 <label for="nPassword">Новый пароль</label>
-                                <input type="password" id="nPassword">
+                                <input type="password" name="nPassword" id="nPassword">
                                 <label for="cPassword">Подтвердите новый пароль</label>
-                                <input type="password" id="cPassword">
+                                <input type="password" name="cPassword" id="cPassword">
                                 <div class="buttons">
                                     <button type="submit">Изменить пароль</button>
                                 </div>

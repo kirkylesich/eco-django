@@ -24,12 +24,12 @@
                <a href="#">Новости</a>
                <a href="#">О нас</a>
                {% if user.is_authenticated %}<div style="display: inline" class="activator">
-                  <a href="#" class="knop">{{user.email}}</a>
+                  <a class="knop">{{user.email}}</a>
                   <ul class="dropdown-menu">
-                    <li><a href="personal-data">Личный кабинет</a></li>
-                    <li><a href="logout">Выйти</a></li>
+                    <li><a href="{% url "maineco:maineco:personal_data" %}">Личный кабинет</a></li>
+                    <li><a href="{% url "maineco:logout" %}">Выйти</a></li>
                 </ul>
-               </div>{% else %}<a href="/login">Войти</a>{% endif %}
+               </div>{% else %}<a href="{% url "maineco:loginuser" %}">Войти</a>{% endif %}
                
             </div>
 
