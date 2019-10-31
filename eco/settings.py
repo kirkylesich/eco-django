@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['194.87.147.194']
 # Application definition
 
 INSTALLED_APPS = [
+    'groups',
     'maineco',
     'users',
     'django.contrib.admin',

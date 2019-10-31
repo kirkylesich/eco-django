@@ -1,59 +1,73 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html>
+	<head>
+		<title>{% block title %}{% endblock title %}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{% static 'css/uikit.min.css' %}" />
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap&subset=cyrillic" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/d0da235e9e.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+		<script src="{% static 'js/uikit.min.js' %}"></script>
+	</head>
+	<body>
+		<header>
+			<div class="greenBG">
+				<div class="uk-container uk-container-large">
+					<nav class="uk-navbar-container uk-navbar-transparent uk-navbar" uk-navbar>
+						<div class="uk-navbar-left">
+							<a class="uk-navbar-item uk-logo" href="{% url 'maineco:main' %}"><img src="img/logo.png" hidden>Чистая Уфа</a>
+						</div>
+						<div class="uk-navbar-right">
+							<ul class="uk-navbar-nav">
+								<li><a href="{% url 'maineco:about' %}"><span class="menuHover">О нас</span></a></li>
+                            {% if not request.user.is_authenticated %}
+								<li>
+									<a><span class="menuHover">Личный кабинет</span></a>
+									<div class="uk-navbar-dropdown greenBG">
+										<ul class="uk-nav uk-navbar-dropdown-nav">
+											<li><a href="{% url 'maineco:loginuser' %}">Вход</a></li>
+											<li><a href="{% url 'maineco:signup' %}">Регистрация</a></li>
+										</ul>
+									</div>
+								</li>
+                            {% endif %}
+								{% if request.user.is_authenticated %}
+                                <li>
+									<a><img class="navAvatar uk-margin-small-right borderR" src="{% if request.user.logo %}{{request.user.logo.url}}{% endif %}"><span class="menuHover">{{request.user.email}}</span></a>
+									<div class="uk-navbar-dropdown greenBG">
+										<ul class="uk-nav uk-navbar-dropdown-nav">
+											<li><a href="{% url 'maineco:maineco:personal_data' %}">Личный кабинет</a></li>
+											<li><a href="{% url 'maineco:logout' %}">Выйти</a></li>
+										</ul>
+									</div>
+								</li>
+                                {% endif %}
+							</ul>
+						</div>
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>eco</title>
-   <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-   <script src="{% static 'js/notify.js' %}"></script>
-</head>
-
-<body>
-   <div class="wrapper">
-      <div class="header">
-         <div class="nav">
-             <div class="logo">{% comment %}<img src='{% static "img/logo.png" %}' width='20' height='50'> {% endcomment %}Eco</div>
-            <div class="nav-links">
-               <a href="#">Новости</a>
-               <a href="#">О нас</a>
-               {% if user.is_authenticated %}<div style="display: inline" class="activator">
-                  <a class="knop">{{user.email}}</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{% url "maineco:maineco:personal_data" %}">Личный кабинет</a></li>
-                    <li><a href="{% url "maineco:logout" %}">Выйти</a></li>
-                </ul>
-               </div>{% else %}<a href="{% url "maineco:loginuser" %}">Войти</a>{% endif %}
-               
-            </div>
-
-         </div>
-      {% block content %}
-
-      {% endblock content %}
-      {% if '/personal-data' not in request.path %}
-      <div class="footer">
-         <a href="" class="vk"></a>
-         <a href="" class="inst"></a>
-      </div>
-      {% endif %}
-   </div>
-</body>
-<script src="{% static 'js/main.js' %}"></script>
-<script>
-    $( document ).ready(function() {
-            {% if messages %}
-                {% for message in messages %}
-                    $.notify("{{message}}",'{{message.tags}}');
-                {% endfor %}
-            {% endif %}
-    });
-</script>
-
+					</nav>
+				</div>
+			</div>
+		</header>
+        {% block content %}
+        {% endblock %}
+		<footer class="greenBG">
+			<div class="uk-container uk-container-large">
+				<div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
+					<div class="">
+						<a class="socIco" href="tel:" target="_blank">+7 909 999 99 99</a>
+						<a class="socIco" href="mailto:" target="_blank">mail@domain.com</a>
+					</div>
+					<div class="">
+						<div class="uk-text-right">
+							<a class="socIco" href="" target="_blank"><i class="fab fa-fw fa-lg fa-vk"></i></a>
+							<a class="socIco" href="" target="_blank"><i class="fab fa-fw fa-lg fa-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
 </html>

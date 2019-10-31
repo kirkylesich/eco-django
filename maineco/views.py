@@ -12,16 +12,22 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import JsonResponse
+from groups.models import Group
 
 
 def gen_hash():
     hash_user = str(uuid.uuid4())
     return hash_user.replace("-", "")
 
-
 def main(request):
-    events = Event.objects.all()
-    return render(request, 'index.html', {'events': events, 'user': request.user})
+    if request.user.is_authenticated:
+        return render(request,'index.html')
+    else:
+        return redirect('about/')
+
+def about(request):
+    groups = Group.objects.all()
+    return render(request, 'about.html', {'groups': groups, 'user': request.user})
 
 
 def loginuser(request):
@@ -32,7 +38,7 @@ def loginuser(request):
         print(user)
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return redirect('/personal-data/')
         else:
             errors = 'Неправильно введены данные'
             return render(request, 'login.html', {'error': errors})

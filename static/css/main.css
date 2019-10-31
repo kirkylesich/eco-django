@@ -1,0 +1,170 @@
+*, html, body, h1, h2, h3, h4, h5, .uk-navbar-item, .uk-navbar-nav>li>a, .uk-navbar-toggle {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+}
+
+html {font-size: 18px;}
+
+.uk-text-lead, .uk-list li {line-height: 1.2;}
+.uk-list li {font-size: 1.3em;}
+
+hr {width: 40%; margin: 0 auto;}
+h2 {margin-top: 15px;}
+
+.uk-button {border-radius: 5px;}
+
+.uk-button-primary {border: 1px solid #2E7D32; background: #2E7D32; color: #fff; }
+.uk-button-primary:hover,.uk-button-primary:focus,.uk-button-primary:active {border: 1px solid #2E7D32; background: transparent; color: #2E7D32;}
+
+.uk-button-secondary {border: 1px solid #2E7D32; background: transparent; color: #2E7D32; }
+.uk-button-secondary:hover,.uk-button-secondary:focus,.uk-button-secondary:active {border: 1px solid #000; background: transparent; color: #000;}
+
+.greenBG {background: #2E7D32;}
+.uk-navbar-nav>li>a {color: #fff; font-size: 1.1em;}
+.uk-navbar-nav>li>a:hover, .uk-logo:hover, .uk-navbar-nav>li>a:focus, .uk-logo:focus, .uk-navbar-nav>li>a:active, .uk-logo:active, .uk-navbar-nav>li:hover>a, .uk-navbar-nav>li>a.uk-open, .uk-navbar-nav>li>a:focus {color: #fff;}
+
+.navAvatar {height: 32px; width: 32px;}
+
+
+.uk-logo {color: #fff; font-size: 2.6em;}
+.uk-logo img {height: 64px; margin-right: 10px;}
+
+.borderR, .uk-input, .uk-card, .uk-alert, .projectCard {border-radius: 5px;}
+
+.uk-input:focus, .uk-select:focus, .uk-textarea:focus {border-color: #2E7D32;}
+
+
+
+.menuHover {position: relative;}
+.menuHover::before {content: "";position: absolute;bottom: 0;left: 0;right: 100%;border-bottom: 1px solid #fff;transition: right .3s ease-out;}
+.menuHover:focus::before, .menuHover:hover::before, .uk-open .menuHover::before {right: 0;}
+
+.uk-navbar-dropdown-nav>li {padding: 5px 0;}
+.uk-navbar-dropdown-nav>li>a {color: #fff;padding: 0; display: inline-block; border-bottom: 1px solid #2E7D32; transition: .1s ease;}
+.uk-navbar-dropdown-nav>li>a:hover, .uk-navbar-dropdown-nav>li>a:active,.uk-navbar-dropdown-nav>li>a:focus {color: #fff; border-bottom: 1px solid #fff;}
+
+ul.iconList li {display: flex; align-items: center;}
+ul.iconList svg {color: #2E7D32; fill: #2E7D32; margin-right: 5px}
+
+.socIco {color: #fff; margin-right: 5px;}
+.socIco:last-of-type {margin-right: 0;}
+
+.socIco:hover, .socIco:focus {color: #fff;}
+
+img[data-src][src*='data:image'] {background: rgba(0,0,0,1);}
+
+.uk-slidenav:hover {color: #2E7D32;}
+
+footer {padding: 10px 0;}
+
+
+
+.videoMuteOverlay {position: absolute; padding: 18px 20px; bottom: 0; left: 0; }
+.videoMute {color: #fff; cursor: pointer;}
+
+
+.lkAvatar {height: 64px; width: 64px;}
+
+.uk-tab>*>a {
+	display: flex;
+	font-size: 1.1rem;
+	padding: 10px;
+	text-transform: none;
+	align-items: center;
+}
+
+.uk-tab>.uk-active>a {
+	color: #2E7D32;
+	border-color: #2E7D32;
+}
+.lkShowName {padding: 5px;}
+.lkShowName:hover {overflow: visible; background: #fff; z-index: 5; max-width: unset;}
+.lkShowName:hover .uk-text-truncate {overflow: visible; max-width: unset;}
+
+
+
+/* card hover */
+
+.projectCard {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	cursor: pointer;
+}
+
+.projectCardText {
+	padding: 2em;
+	color: #fff;
+	font-size: 1em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.projectCardText a {
+	color: #999;
+	transition: color 0.35s;
+}
+
+.projectCardText a:hover {
+	color: #fff;
+}
+
+.projectCardText, .projectCardLink {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.projectCard .projectCardText::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0, 0, 0, 0.4) 75%);
+	content: '';
+	opacity: 0;
+	transform: translate3d(0,50%,0);
+}
+
+.projectCard h3 {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	padding: 0.5em;
+	color: #fff;
+	transition: transform 0.35s, color 0.35s;
+	transform: translate3d(0,-50%,0);
+}
+
+.projectCard .projectCardText::before,
+.projectCard p {
+	transition: opacity 0.35s, transform 0.35s;
+}
+
+.projectCard p {
+	position: absolute;
+    bottom: 0;
+    left: 0;
+	right: 0;
+    padding: 1.1em;
+	margin: 0;
+    opacity: 0;
+    -webkit-transform: translate3d(0,10px,0);
+    transform: translate3d(0,10px,0);
+}
+
+.projectCard:hover h3 {
+	color: #fff;
+	transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
+}
+
+.projectCard:hover .projectCardText::before ,
+.projectCard:hover p {
+	opacity: 1;
+	color: #fff;
+	transform: translate3d(0,0,0);
+}

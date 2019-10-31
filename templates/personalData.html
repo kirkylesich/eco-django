@@ -55,12 +55,12 @@
                             </div>
                             <form action="{% url "maineco:maineco:change_password" %}" method="post">
                                 {% csrf_token %}
-                                <label for="password">Текущий пароль</label>
-                                <input type="password" name="password" id="password">
-                                <label for="nPassword">Новый пароль</label>
-                                <input type="password" name="nPassword" id="nPassword">
-                                <label for="cPassword">Подтвердите новый пароль</label>
-                                <input type="password" name="cPassword" id="cPassword">
+                                <label for="old_password">Старый пароль</label>
+                                <input type="password" name="old_password" autofocus="" required="" id="id_old_password">
+                                <label for="new_password1">Новый пароль</label>
+                                <input type="password" name="new_password1" autofocus="" required="" id="id_new_password1">
+                                <label for="new_password2">Подтвердите новый пароль</label>
+                                <input type="password" name="new_password2" autofocus="" required="" id="id_new_password2">
                                 <div class="buttons">
                                     <button type="submit">Изменить пароль</button>
                                 </div>

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    О нас
+{% endblock title %}
+{% block content %}
+		<main class="uk-section-small" uk-height-viewport="expand: true">
+			<div class="uk-container uk-container-large">
+
+				<div class="uk-section-small">
+					<div class="uk-child-width-1-1 uk-child-width-1-2@m uk-grid-small" uk-grid>
+						<div class="">
+							<h1>Стать волонтером - в один клик</h1>
+							<p class="uk-text-lead">Сервис для организации, учета и оптимизации создания волонтерских мероприятий. Все это в нашем будущем сервисе!</p>
+							<ul class="uk-list iconList">
+								<li><i class="fas fa-sign-in-alt fa-2x fa-fw"></i> Регистрируешься и выбираешь интересные тебе мероприятия</li>
+								<li><i class="fas fa-recycle fa-2x fa-fw"></i> Делаешь наш мир лучше</li>
+								<li><i class="fas fa-star fa-2x fa-fw"></i> Соревнуешься с другими волонтерами, покоряешь рейтинг и получаешь плюшки</li>
+							</ul>
+						</div>
+						<div class="">
+							<div class="uk-position-relative">
+								<video id="introVideo" class="uk-width-1-1" src="{% static 'img/vid.webm' %}" playsinline autoplay uk-video onloadstart="this.volume=0.5"></video>
+
+								<div class="videoMuteOverlay" uk-toggle="target: .videoMute">
+									<i class="fas fa-2x fa-volume-up videoMute" onclick="document.getElementById('introVideo').volume=0"></i>
+									<i class="fas fa-2x fa-volume-mute videoMute" onclick="document.getElementById('introVideo').volume=0.5" hidden></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="uk-section-small">
+					<hr>
+					<h2 class="uk-text-center">Наши проекты</h2>
+					<div class="uk-child-width-1-1@m uk-child-width-1-2@s uk-child-width-1-4@m uk-grid-small" uk-grid>
+						{% for group in groups %}
+{#                            <div>#}
+{#                                <a href="" {% if forloop.counter > 4 %}class="showMore" hidden{% endif %}>#}
+{#                                    <div class="uk-inline-clip uk-transition-toggle borderR" tabindex="0">#}
+{#                                        <img data-src="{% static 'img/placeholder.jpg' %}" alt="Название проекта" class="" uk-img>#}
+{#                                        <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary">#}
+{#                                            <div class="uk-position-small uk-position-bottom">#}
+{#                                                <h3>{{ group.name }}</h3>#}
+{#                                                <p>{{ group.small_description }}</p>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </a>#}
+{#                            </div>#}
+                            <div {% if forloop.counter > 4 %}class="showMore" hidden{% endif %}>
+							<div class="projectCard">
+								<img data-src="{% static 'img/placeholder.jpg' %}" alt="{{ group.name }}"  uk-img>
+								<div class="projectCardText">
+									<h3>{{ group.name }}</h3>
+									<p>{{ group.small_description }}</p>
+								</div>
+								<a href="" class="projectCardLink"></a>
+							</div>
+						</div>
+                        {% endfor %}
+
+						{% if groups.count > 4 %}<div class="uk-width-1-1 uk-text-center showMore"><button class="uk-button uk-button-secondary" uk-toggle="target: .showMore" type="button">Показать еще</button></div>{% endif %}
+
+					</div>
+				</div>
+
+				<div class="uk-section-small">
+					<hr>
+					<h2 class="uk-text-center">С нами уже работают</h2>
+					<div class="uk-position-relative uk-visible-toggle" uk-slider="autoplay: true; autoplay-interval: 1000">
+						<div class="uk-slider-container">
+							<ul class="uk-slider-items uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-6@m">
+								<li><img src="{% static 'img/logos/1.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/2.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/3.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/4.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/5.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/6.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/7.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/8.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/9.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/10.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/11.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/12.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/13.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/14.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/15.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/16.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/17.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/18.png' %}" alt="1"></li>
+								<li><img src="{% static 'img/logos/19.png' %}" alt="1"></li>
+							</ul>
+						</div>
+						<a class="uk-position-center-left-out uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+						<a class="uk-position-center-right-out uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+					</div>
+				</div>
+
+				<div class="uk-section-xsmall uk-text-center"><a class="uk-button uk-button-secondary" href="#">Узнать как помочь</a></div>
+
+			</div>
+		</main>
+{% endblock content %}

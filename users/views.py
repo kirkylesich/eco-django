@@ -1,3 +1,4 @@
+from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render
 from django.shortcuts import redirect
 from users.forms import *
@@ -6,6 +7,7 @@ from django.views.decorators.http import require_POST, require_GET
 from django.contrib import messages
 from django.http import HttpResponse
 import json
+from groups.models import Group
 from django.http import JsonResponse
 
 
@@ -17,9 +19,10 @@ def show_forms_errors(request, form):
 @login_required
 def personaldata(request):
     user = request.user
-    print(user.is_confirmed)
     form = PersonalData()
-    return render(request, 'personalData.html', {'form': form, 'user': user})
+    form_pass = PasswordChangeForm(user)
+    groups = Group.objects.filter(creater=user)
+    return render(request, 'lk.html', {'form_pass': form_pass, 'form': form, 'user': user, 'groups': groups})
 
 
 @login_required
@@ -36,10 +39,16 @@ def personal_update(request):
         show_forms_errors(request, form)
     return render(request, 'personalData.html', {'form': form, 'user': user})
 
+
 @require_POST
 def change_password(request):
     user = request.user
-
-    print(request.POST)
-    return HttpResponse(request.POST)
-
+    form = PersonalData(instance=user)
+    form_pass = PasswordChangeForm(user, request.POST)
+    if form_pass.is_valid():
+        user = form_pass.save()
+        update_session_auth_hash(request, user)
+        messages.add_message(request, messages.SUCCESS, 'Пароль изменён!')
+    else:
+        show_forms_errors(request, form_pass)
+    return render(request, 'personalData.html', {'form_pass': form_pass, 'form': form, 'user': user})

@@ -1,12 +1,9 @@
-var res = $(".dropdown-menu");
-$(".knop").on("click", funk);
 
+$(function() {
+	if (typeof jQuery != 'undefined') {console.log(jQuery.fn.jquery);}
 
-function funk(){
-  if(res.css("display") == "none"){
-    res.fadeIn(100);
-  }
-  else{
-    res.fadeOut(100);
-  }
-}
+});
+
+$('.showPass').click(function() {
+	$('.userPassInput').prop('type', $(this).data( "type" ));
+});
