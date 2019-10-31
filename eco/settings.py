@@ -25,7 +25,7 @@ SECRET_KEY = '8y)!qrgkmi@846^g-k_2y#v^h^2j(+lb=z@r%60*8sb3idkh#2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['194.87.147.194']
 
 
 
@@ -78,14 +78,16 @@ WSGI_APPLICATION = 'eco.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+	'NAME': 'eco_db',
+	'USER' : 'eco_admin',
+	'PASSWORD' : 'yoga5000',
+	'HOST' : 'localhost',
+	'PORT' : '5432',
     }
 }
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -139,3 +141,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL='/login'
+
+
+
