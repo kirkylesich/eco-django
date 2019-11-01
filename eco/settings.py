@@ -25,7 +25,7 @@ SECRET_KEY = '8y)!qrgkmi@846^g-k_2y#v^h^2j(+lb=z@r%60*8sb3idkh#2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['194.87.147.194']
+ALLOWED_HOSTS = ['194.87.147.194','eco.647.su']
 
 
 
@@ -133,9 +133,8 @@ EMAIL_PORT = 587
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
-STATIC_ROOT = ''
 AUTH_USER_MODEL = 'users.User'
 
 MEDIA_URL = '/media/'
