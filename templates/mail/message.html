@@ -1,2 +1,2 @@
 
-<body><p>Ваша ссылка для подтверждения аккаунта: <a href = "http://127.0.0.1:8000{% url 'maineco:hash_code' hash_code=hash %}">Ссылка</a></p></body>
+<body><p>Ваша ссылка для подтверждения аккаунта:<a href = "{{baseurl}}{% url 'maineco:hash_code' hash_code=hash %}">Ссылка</a></p></body>
