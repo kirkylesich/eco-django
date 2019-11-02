@@ -12,7 +12,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, null=True, blank=True)
     date_birthday = models.DateField(null=True, blank=True)
-    email = models.EmailField(null=False, blank=False, unique=False)
+    email = models.EmailField(null=False, blank=False)
     hash_code = models.CharField(unique=True, max_length=200, null=True, blank=True)
     is_confirmed = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
