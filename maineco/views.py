@@ -21,13 +21,13 @@ from users.views import show_forms_errors
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib.sites.shortcuts import get_current_site
 
+
 def gen_hash():
     hash_user = str(uuid.uuid4())
     return hash_user.replace("-", "")
 
 
 def main(request):
-
     if request.user.is_authenticated:
         return render(request, 'index.html')
     else:
@@ -64,11 +64,13 @@ def sendemail(email, hash_code, request):
 
 
 def validate_hash(request, hash_code):
-    user = get_object_or_404(User, hash_code=hash_code)
-    if not user.is_confirmed:
+    if hash_code != "0":
+        user = get_object_or_404(User, hash_code=hash_code)
         user.is_confirmed = True
         user.hash_code = 0
         user.save()
+    else:
+        return redirect('/')
     return redirect('/personal-data/')
 
 
