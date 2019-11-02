@@ -11,6 +11,7 @@ urlpatterns = [
                   path('login/', loginuser, name='loginuser'),
                   path('logout/', logout, name='logout'),
                   path('signup/', signup, name='signup'),
+                  path('signup/update', signup_user, name='signup_user'),
                   path('signup/verification/<hash_code>', validate_hash, name='hash_code'),
                   path('joinevent/', join_event, name='join_event'),
 
