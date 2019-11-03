@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Title</title>
+		<title>Вход</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="{% static 'css/uikit.min.css' %}" />
@@ -17,12 +17,12 @@
 				<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m uk-width-1-5@xl uk-padding-small">
 					<div class="uk-card uk-card-default uk-card-body">
 						<h3 class="uk-card-title">Авторизация</h3>
-						<form class="uk-grid-small" uk-grid method="post" action="{% url 'maineco:loginuser' %}">
+						<form class="uk-grid-small" uk-grid method="post" action="{% url 'maineco:login' %}">
                         {% csrf_token %}
 							<div class="uk-width-1-1">
 								<div class="uk-position-relative">
 									<span class="uk-form-icon"><i class="fas fa-envelope"></i></span>
-									<input id="login" name="login" class="uk-input" type="e-mail" placeholder="Почта">
+									<input id="id_username" name="username" class="uk-input" type="email" placeholder="Почта">
 								</div>
 							</div>
 							<div class="uk-width-1-1">
@@ -32,15 +32,15 @@
 										<span class="showPass" data-type="text" uk-toggle="target: .showPass"><i class="fas fa-eye"></i></span>
 										<span class="showPass" data-type="password" uk-toggle="target: .showPass" hidden><i class="fas fa-eye-slash"></i></span>
 									</a>
-									<input id="password" name="password" class="uk-input userPassInput" type="password" placeholder="Пароль">
+									<input id="id_password" name="password" class="uk-input userPassInput" type="password" placeholder="Пароль">
 								</div>
 							</div>
 							<div class="uk-width-1-1">
-                                {% if error %}
-								<div class="uk-alert-danger" uk-alert>
-									<a class="uk-alert-close" uk-close></a>
-									<p>{{error}}</p>
-								</div>
+                                {% if form.errors %}
+                                        <div class="uk-alert-danger" uk-alert>
+                                            <a class="uk-alert-close" uk-close></a>
+                                            <p>Пожалуйста, введите правильные email и пароль. Оба поля могут быть чувствительны к регистру.</p>
+                                        </div>
                                 {% endif %}
 							</div>
 							<div class="uk-width-1-1 uk-text-center">
