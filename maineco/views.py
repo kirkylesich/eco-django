@@ -35,25 +35,9 @@ def main(request):
 
 
 def about(request):
-    print(request.get_host())
-    print(request.scheme)
     groups = Group.objects.all()
     return render(request, 'about.html', {'groups': groups, 'user': request.user})
 
-
-def loginuser(request):
-    if request.method == "POST":
-        username = request.POST['login']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        print(user)
-        if user is not None:
-            login(request, user)
-            return redirect('/personal-data/')
-        else:
-            errors = 'Неправильно введены данные'
-            return render(request, 'login.html', {'error': errors})
-    return render(request, 'login.html')
 
 
 def sendemail(email, hash_code, request):
